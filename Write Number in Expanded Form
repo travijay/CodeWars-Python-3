@@ -1,0 +1,6 @@
+def expanded_form(num):
+    expanded_nums = []
+    for count, i in enumerate(reversed(str(num)),0):
+        expanded_nums.append(int(i) * (10 ** count))
+    expanded_nums = [x for x in expanded_nums if x != 0]
+    return " + ".join(map(str, sorted(expanded_nums, reverse = True)))
