@@ -1,0 +1,36 @@
+'''
+Description:
+For building the encrypted string:
+Take every 2nd char from the string, then the other chars, that are not every 2nd char, and concat them as new String.
+Do this n times!
+'''
+
+from itertools import zip_longest as zlo
+
+def decrypt(encrypted_text, n):
+    new_characters = []
+    if n <= 0:
+        return encrypted_text
+    else:
+        i = 0
+        while i < n:
+            partition = len(encrypted_text)//2
+            for rep in range(n):
+                a, b = encrypted_text[:partition], encrypted_text[partition:]
+                encrypted_text = ''.join(j + i for i, j in zlo(a, b, fillvalue = ''))
+            return encrypted_text
+            #encrypted_text = ''.join([characters[x] for x in index_order])
+            #i += 1
+    #return encrypted_text
+
+def encrypt(text, n):   
+    if n <= 0:
+        return text
+    else:
+        i = 0
+        while i < n:
+            characters = list(text)
+            index_order = list(range(1, len(characters), 2)) + list(range(0, len(characters), 2))    
+            text = ''.join([characters[x] for x in index_order])
+            i += 1
+    return text
